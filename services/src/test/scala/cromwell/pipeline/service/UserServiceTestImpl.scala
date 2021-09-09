@@ -9,6 +9,8 @@ class UserServiceTestImpl(users: Seq[UserWithCredentials], testMode: TestMode) e
 
   override def killAllHumans(users: User*): Unit = ???
 
+  override def makeAllCatsRobots(users: User*): Unit = ???
+
   override def getUsersByEmail(emailPattern: String): Future[Seq[User]] =
     testMode match {
       case WithException(exc) => Future.failed(exc)

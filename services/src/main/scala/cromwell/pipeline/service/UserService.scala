@@ -13,6 +13,8 @@ trait UserService {
 
   def killAllHumans(users: User*): Unit
 
+  def makeAllCatsRobots(users: User*): Unit
+
   def getUsersByEmail(emailPattern: String): Future[Seq[User]]
 
   def getUserWithCredentialsByEmail(email: UserEmail): Future[Option[UserWithCredentials]]
@@ -38,6 +40,8 @@ object UserService {
 
       def killAllHumans(users: User*): Unit =
         users.map(user => deactivateUserById(user.userId))
+
+      def makeAllCatsRobots(users: User*): Unit = println("Done")
 
       def getUsersByEmail(emailPattern: String): Future[Seq[User]] =
         userRepository.getUsersByEmail(emailPattern).map(seq => seq.map(User.fromUserWithCredentials))
