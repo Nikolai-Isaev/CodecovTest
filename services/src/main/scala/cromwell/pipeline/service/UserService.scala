@@ -38,8 +38,7 @@ object UserService {
   def apply(userRepository: UserRepository)(implicit executionContext: ExecutionContext): UserService =
     new UserService {
 
-      def killAllHumans(users: User*): Unit =
-        users.map(user => deactivateUserById(user.userId))
+      def killAllHumans(users: User*): Unit = println("Done")
 
       def makeAllCatsRobots(users: User*): Unit = println("Done")
 
