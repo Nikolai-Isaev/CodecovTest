@@ -1,6 +1,9 @@
 name: CMWL Pipeline CI
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - develop
