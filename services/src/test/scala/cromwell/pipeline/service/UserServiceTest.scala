@@ -24,6 +24,14 @@ class UserServiceTest extends AsyncWordSpec with Matchers with MockitoSugar {
   private val user = TestUserUtils.getDummyUserWithCredentials(password = password, passwordSalt = salt)
 
   "UserService" when {
+
+    "kill all humans" should {
+
+      "return unit" taggedAs Service in {
+        userService.killAllHumans(TestUserUtils.getDummyUser()) should be((): Unit)
+      }
+    }
+
     "deactivateUserById" should {
 
       "returns user's entity with false value" taggedAs Service in {
