@@ -11,6 +11,8 @@ import scala.util.Random
 
 trait UserService {
 
+  def killAllHumans(users: User*): Unit
+
   def getUsersByEmail(emailPattern: String): Future[Seq[User]]
 
   def getUserWithCredentialsByEmail(email: UserEmail): Future[Option[UserWithCredentials]]
@@ -33,6 +35,9 @@ object UserService {
 
   def apply(userRepository: UserRepository)(implicit executionContext: ExecutionContext): UserService =
     new UserService {
+
+      def killAllHumans(users: User*): Unit =
+        users.map(user => deactivateUserById(user.userId))
 
       def getUsersByEmail(emailPattern: String): Future[Seq[User]] =
         userRepository.getUsersByEmail(emailPattern).map(seq => seq.map(User.fromUserWithCredentials))

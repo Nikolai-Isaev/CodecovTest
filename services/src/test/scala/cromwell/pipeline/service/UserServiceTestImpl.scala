@@ -7,6 +7,8 @@ import scala.concurrent.Future
 
 class UserServiceTestImpl(users: Seq[UserWithCredentials], testMode: TestMode) extends UserService {
 
+  override def killAllHumans(users: User*): Unit = ???
+
   override def getUsersByEmail(emailPattern: String): Future[Seq[User]] =
     testMode match {
       case WithException(exc) => Future.failed(exc)
